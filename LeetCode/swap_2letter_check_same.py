@@ -31,8 +31,8 @@ def buddyStrings(A, B):
 
 if __name__ == '__main__':
 
-    A = "aabca"
-    B = "abcaa"
+    A = "aabcab"
+    B = "abcaab"
     D = "acba"
     E = "abca"
 
