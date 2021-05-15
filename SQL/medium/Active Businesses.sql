@@ -42,10 +42,26 @@
 
 -- Solution
 
+'''my Solution'''
 SELECT a.business_id
 FROM Events a,
 (SELECT event_type,avg(occurences) AS average FROM Events GROUP BY event_type) b
 WHERE a.event_type=b.event_type AND a.occurences > b.average
 GROUP BY a.business_id
 HAVING COUNT(event_type) > 1
-ORDER BY a.business_id
+
+
+'''others'''
+select t1.business_id
+from (
+    select business_id, event_type, avg(occurences) as avgo
+    from Events
+    group by business_id, event_type) as t1 
+inner join 
+    (select event_type, avg(occurences) as avgo
+    from Events
+    group by event_type) as t2
+on t1.event_type = t2.event_type
+where t1.avgo>t2.avgo
+group by business_id
+having count(1)>1
